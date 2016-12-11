@@ -256,7 +256,7 @@ void Gamestate_ProcessEvent(struct Game *game, struct GamestateResources* data, 
 			}
 			free(filename);
 		}
-		data->chosen1 = true;
+		data->chosen1 = ev->joystick.button != 5;
 	}
 	if ((ev->type==ALLEGRO_EVENT_JOYSTICK_BUTTON_DOWN) && (ev->joystick.id == al_get_joystick(1))) {
 		if ((!data->chosen1) || (!data->chosen2)) {
@@ -271,7 +271,7 @@ void Gamestate_ProcessEvent(struct Game *game, struct GamestateResources* data, 
 			}
 			free(filename);
 		}
-		data->chosen2 = true;
+		data->chosen2 = ev->joystick.button != 5;
 	}
 
 
