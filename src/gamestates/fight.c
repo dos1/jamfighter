@@ -42,7 +42,7 @@ struct GamestateResources {
 
 		int wins1, wins2;
 
-		ALLEGRO_BITMAP *bg, *pixelator, *bam;
+		ALLEGRO_BITMAP *bg, *pixelator, *bam1, *bam2, *bam;
 
 		ALLEGRO_BITMAP *characters[24], *faces[24];
 
@@ -308,6 +308,7 @@ void Gamestate_Logic(struct Game *game, struct GamestateResources* data) {
 			data->bamcount = 20;
 			data->bamx = bamx;
 			data->bamy = bamy;
+			data->bam = data->bam1;
 
 			int i = rand()%8;
 			al_stop_sample_instance(data->bamsound[i]);
@@ -320,6 +321,7 @@ void Gamestate_Logic(struct Game *game, struct GamestateResources* data) {
 			data->bamcount = 20;
 			data->bamx = bamx;
 			data->bamy = bamy;
+			data->bam = data->bam2;
 
 			int i = rand()%8;
 			al_stop_sample_instance(data->bamsound[i]);
@@ -446,7 +448,8 @@ void* Gamestate_Load(struct Game *game, void (*progress)(struct Game*)) {
 	progress(game); // report that we progressed with the loading, so the engine can draw a progress bar
 
 	data->bg = al_load_bitmap(GetDataFilePath(game, "bg.png"));
-	data->bam = al_load_bitmap(GetDataFilePath(game, "bam.png"));
+	data->bam1 = al_load_bitmap(GetDataFilePath(game, "bam.png"));
+	data->bam2 = al_load_bitmap(GetDataFilePath(game, "bam2.png"));
 
 	data->gand = al_create_bitmap(28,16);
 
