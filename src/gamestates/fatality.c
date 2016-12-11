@@ -140,7 +140,11 @@ void Gamestate_Draw(struct Game *game, struct GamestateResources* data) {
 	if (!data->started) {
 		al_draw_filled_rectangle(0, 0, 320, 180, al_map_rgba(0,0,0, 128));
 		if ((data->blink_counter/30)%2==0) {
-			DrawTextWithShadow(data->font, al_map_rgb(255,255,255), 320/2, 180/2 - 8, ALLEGRO_ALIGN_CENTER, "Finish him!");
+			if ((game->data->loser==1) || (game->data->loser==8) || (game->data->loser==23)) {
+				DrawTextWithShadow(data->font, al_map_rgb(255,255,255), 320/2, 180/2 - 8, ALLEGRO_ALIGN_CENTER, "Finish her!");
+			} else {
+				DrawTextWithShadow(data->font, al_map_rgb(255,255,255), 320/2, 180/2 - 8, ALLEGRO_ALIGN_CENTER, "Finish him!");
+			}
 		}
 	}
 
@@ -249,7 +253,11 @@ void Gamestate_Start(struct Game *game, struct GamestateResources* data) {
 
 	data->started = false;
 
-	al_play_sample_instance(data->himsound);
+	if ((game->data->loser==1) || (game->data->loser==8) || (game->data->loser==23)) {
+		al_play_sample_instance(data->hersound);
+	} else {
+		al_play_sample_instance(data->himsound);
+	}
 }
 
 void Gamestate_Stop(struct Game *game, struct GamestateResources* data) {
