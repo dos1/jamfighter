@@ -166,6 +166,7 @@ void Gamestate_Logic(struct Game *game, struct GamestateResources* data) {
 			data->text = "READY";
 		} else if (data->readiness==200) {
 			al_play_sample_instance(data->gosound);
+			al_play_sample_instance(game->data->music);
 			data->started = true;
 			data->text = NULL;
 		}
@@ -569,8 +570,8 @@ data->round = 0;
 	data->walking1 = false;
 	data->walking2 = false;
 
-	data->health1 = 100;
-	data->health2 = 100;
+	data->health1 = 10;
+	data->health2 = 10;
 
 	data->bamcount = 0;
 

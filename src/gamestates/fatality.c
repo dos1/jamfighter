@@ -85,28 +85,45 @@ void Gamestate_Draw(struct Game *game, struct GamestateResources* data) {
 	al_draw_bitmap(data->bg, 0, 0, 0);
 //	SetCharacterPosition(game, data->gandalf, 211, 71, 0);
 
-	ALLEGRO_BITMAP *weapon;
+	ALLEGRO_BITMAP *weapon, *weaponl;
 	weapon = data->tamburyn;
+	weaponl = data->tamburyn;
 
-	if (game->data->loser==22) {
+	if (game->data->winner==22) {
 		weapon = data->wasolele;
-	}	else if (game->data->loser==2) {
+	}	else if (game->data->winner==2) {
 		weapon = data->ukulele;
 	}
 
-	if (game->data->loser==22) {
+	if (game->data->winner==22) {
 		weapon = data->wasolele;
-	}	else if (game->data->loser==2) {
+	}	else if (game->data->winner==2) {
 		weapon = data->ukulele;
+	}
+
+
+
+
+
+	if (game->data->loser==22) {
+		weaponl = data->wasolele;
+	}	else if (game->data->loser==2) {
+		weaponl = data->ukulele;
+	}
+
+	if (game->data->loser==22) {
+		weaponl = data->wasolele;
+	}	else if (game->data->loser==2) {
+		weaponl = data->ukulele;
 	}
 
 
 	int posx1 = 110; int posy1 =3;
 
-	al_draw_rotated_bitmap(weapon, 0, 3, 10 + posx1 + 7, posy1 + 43, -3.14*1.1, 0);
+	al_draw_rotated_bitmap(weaponl, 0, 3, 10 + posx1 + 7, posy1 + 43, -3.14*1.1, 0);
 	SetCharacterPosition(game, data->player1, posx1, posy1, 0);
 	DrawCharacter(game, data->player1, al_map_rgb(255,255,255), ALLEGRO_FLIP_HORIZONTAL);
-	al_draw_bitmap(data->faces[data->selected1], -5+posx1, posy1 + 7 + data->player1->pos, ALLEGRO_FLIP_HORIZONTAL);
+	al_draw_bitmap(data->faces[game->data->loser], -5+posx1, posy1 + 7 + data->player1->pos, ALLEGRO_FLIP_HORIZONTAL);
 
 
 	al_draw_scaled_rotated_bitmap(weapon, 30/2, 10/2, 50, 90, 6, 6, -0.35*3.14 + data->rot, 0 );
