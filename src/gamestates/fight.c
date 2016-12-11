@@ -580,8 +580,8 @@ data->round = 0;
 	data->walking1 = false;
 	data->walking2 = false;
 
-	data->health1 = 10;
-	data->health2 = 10;
+	data->health1 = 100;
+	data->health2 = 100;
 
 	data->bamcount = 0;
 
