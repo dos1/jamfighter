@@ -166,6 +166,29 @@ void Gamestate_ProcessEvent(struct Game *game, struct GamestateResources* data, 
 
 
 	if (!data->chosen1) {
+
+		if ((ev->type==ALLEGRO_EVENT_JOYSTICK_AXIS) && (ev->joystick.id == al_get_joystick(0))) {
+			if (ev->joystick.stick==0) {
+				if (ev->joystick.axis==0) {
+					if (ev->joystick.pos==1) {
+						data->selected1 += 1;
+					}
+					if (ev->joystick.pos==-1) {
+						data->selected1 -= 1;
+					}
+				}
+				if (ev->joystick.axis==1) {
+					if (ev->joystick.pos==-1) {
+						data->selected1 -= 8;
+					}
+					if (ev->joystick.pos==1) {
+						data->selected1 += 8;
+					}
+				}
+			}
+
+		}
+		/*
 		if ((ev->type==ALLEGRO_EVENT_KEY_DOWN) && (ev->keyboard.keycode == ALLEGRO_KEY_W)) {
 			data->selected1 -= 8;
 		}
@@ -177,10 +200,35 @@ void Gamestate_ProcessEvent(struct Game *game, struct GamestateResources* data, 
 		}
 		if ((ev->type==ALLEGRO_EVENT_KEY_DOWN) && (ev->keyboard.keycode == ALLEGRO_KEY_A)) {
 			data->selected1 -= 1;
-		}
+		}*/
 	}
 
 	if (!data->chosen2) {
+
+
+		if ((ev->type==ALLEGRO_EVENT_JOYSTICK_AXIS) && (ev->joystick.id == al_get_joystick(1))) {
+			if (ev->joystick.stick==0) {
+				if (ev->joystick.axis==0) {
+					if (ev->joystick.pos==1) {
+						data->selected2 += 1;
+					}
+					if (ev->joystick.pos==-1) {
+						data->selected2 -= 1;
+					}
+				}
+				if (ev->joystick.axis==1) {
+					if (ev->joystick.pos==-1) {
+						data->selected2 -= 8;
+					}
+					if (ev->joystick.pos==1) {
+						data->selected2 += 8;
+					}
+				}
+			}
+		}
+
+
+		/*
 		if ((ev->type==ALLEGRO_EVENT_KEY_DOWN) && (ev->keyboard.keycode == ALLEGRO_KEY_UP)) {
 			data->selected2 -= 8;
 		}
@@ -192,10 +240,10 @@ void Gamestate_ProcessEvent(struct Game *game, struct GamestateResources* data, 
 		}
 		if ((ev->type==ALLEGRO_EVENT_KEY_DOWN) && (ev->keyboard.keycode == ALLEGRO_KEY_LEFT)) {
 			data->selected2 -= 1;
-		}
+		}*/
 	}
 
-	if ((ev->type==ALLEGRO_EVENT_KEY_DOWN) && (ev->keyboard.keycode == ALLEGRO_KEY_ENTER)) {
+	if ((ev->type==ALLEGRO_EVENT_JOYSTICK_BUTTON_DOWN) && (ev->joystick.id == al_get_joystick(0))) {
 		if ((!data->chosen1) || (!data->chosen2)) {
 			char *filename = malloc(32*sizeof(char));
 			snprintf(filename, 20, "calls/%d.wav", data->selected1);
@@ -210,7 +258,7 @@ void Gamestate_ProcessEvent(struct Game *game, struct GamestateResources* data, 
 		}
 		data->chosen1 = true;
 	}
-	if ((ev->type==ALLEGRO_EVENT_KEY_DOWN) && (ev->keyboard.keycode == ALLEGRO_KEY_SPACE)) {
+	if ((ev->type==ALLEGRO_EVENT_JOYSTICK_BUTTON_DOWN) && (ev->joystick.id == al_get_joystick(1))) {
 		if ((!data->chosen1) || (!data->chosen2)) {
 			char *filename = malloc(32*sizeof(char));
 			snprintf(filename, 20, "calls/%d.wav", data->selected2);
