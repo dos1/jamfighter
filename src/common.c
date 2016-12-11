@@ -24,6 +24,13 @@
 
 struct CommonResources* CreateGameData(struct Game *game) {
 	struct CommonResources *data = calloc(1, sizeof(struct CommonResources));
+
+	data->sample = al_load_sample(GetDataFilePath(game, "music.wav"));
+	data->music = al_create_sample_instance(data->sample);
+	al_attach_sample_instance_to_mixer(data->music, game->audio.music);
+	al_set_sample_instance_playmode(data->music, ALLEGRO_PLAYMODE_LOOP);
+
+
 	return data;
 }
 

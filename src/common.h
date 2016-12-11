@@ -3,7 +3,10 @@
 
 struct CommonResources {
 		// Fill in with common data accessible from all gamestates.
-		int selected1, selected2, winner;
+		int selected1, selected2, winner, loser, winplayer;
+
+		ALLEGRO_SAMPLE *sample;
+		ALLEGRO_SAMPLE_INSTANCE *music;
 };
 
 struct CommonResources* CreateGameData(struct Game *game);

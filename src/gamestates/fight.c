@@ -96,10 +96,14 @@ void EndRound(struct Game *game, struct GamestateResources* data) {
 	if ((data->wins1==2) || (data->wins2==2)) {
 		if (data->wins1==2) {
 			game->data->winner = game->data->selected1;
+			game->data->loser = game->data->selected2;
+			game->data->winplayer = 0;
 		} else {
 			game->data->winner = game->data->selected2;
+			game->data->loser = game->data->selected1;
+			game->data->winplayer = 1;
 		}
-		SwitchCurrentGamestate(game, "select");
+		SwitchCurrentGamestate(game, "fatality");
 	}
 
 	data->blink_counter = 0;
