@@ -46,7 +46,7 @@ struct GamestateResources {
 
 		ALLEGRO_BITMAP *characters[24], *faces[24];
 
-		ALLEGRO_BITMAP *ukulele, *wasolele, *tamburyn;
+		ALLEGRO_BITMAP *ukulele, *wasolele, *tamburyn, *kazoo, *keyboard;
 
 		struct Character *player1, *player2, *gandalf;
 
@@ -364,12 +364,20 @@ void Gamestate_Draw(struct Game *game, struct GamestateResources* data) {
 		weaponl = data->wasolele;
 	}	else if (data->selected1==2) {
 		weaponl = data->ukulele;
+	} else if (data->selected1==1) {
+		weaponl = data->keyboard;
+	} else if (data->selected1==15) {
+		weaponl = data->kazoo;
 	}
 
 	if (data->selected2==22) {
 		weaponr = data->wasolele;
 	}	else if (data->selected2==2) {
 		weaponr = data->ukulele;
+	} else if (data->selected2==1) {
+		weaponr = data->keyboard;
+	}else if (data->selected2==15) {
+		weaponr = data->kazoo;
 	}
 
 	al_draw_rotated_bitmap(weaponl, 0, 3, 10 + data->posx1 + (data->left1 ? 7 : 0), data->posy1 + 43- data->player1->pos, -data->rot1, 0);
@@ -463,6 +471,8 @@ void* Gamestate_Load(struct Game *game, void (*progress)(struct Game*)) {
 	data->wasolele = al_load_bitmap(GetDataFilePath(game, "wasolele.png"));
 	data->ukulele = al_load_bitmap(GetDataFilePath(game, "ukulele.png"));
 	data->tamburyn = al_load_bitmap(GetDataFilePath(game, "tamburyn.png"));
+	data->kazoo = al_load_bitmap(GetDataFilePath(game, "kazoo.png"));
+	data->keyboard = al_load_bitmap(GetDataFilePath(game, "keyboard.png"));
 
 	for (int i=0; i<24; i++) {
 		char *name = malloc(32*sizeof(char));
