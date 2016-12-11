@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Jam Fighter
+Exec=jamfighter
+Comment=A game where you just attend your standard, typical game jam.
+Icon=jamfighter
+Terminal=false
+Categories=Game;ArcadeGame;
