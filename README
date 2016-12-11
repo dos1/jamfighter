@@ -1,0 +1,4 @@
+Jam Fighter
+========
+
+mkdir build; cd build; cmake ..; make; cd ..; build/src/jamfighter
